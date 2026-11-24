@@ -96,3 +96,7 @@ The root notebook now uses the supported local package with safe defaults and ex
 ## Real-data CPU example
 
 See [actual results, source terms and explicit download/preparation commands](docs/real-data.md). These are small development runs, not accuracy or production guarantees. No model/data is committed.
+
+## Measured CPU quality follow-up
+
+See [quality experiments, results and limits](docs/quality-cpu.md). These go beyond wiring smokes; some improve measured results, while others expose overfit or a stronger simple baseline. No quality guarantee.
