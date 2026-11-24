@@ -1,0 +1,17 @@
+{
+  "synthetic_only": true,
+  "scope": "invented_squares_not_MRI_not_clinical_or_diagnostic",
+  "quality_claim": false,
+  "result": {
+    "training": {
+      "validation_loss": 0.6938757300376892,
+      "validation_dice": 0.030534351145038167,
+      "validation_images": 1,
+      "validation_patients": 1
+    },
+    "prediction_shape": [
+      16,
+      16
+    ]
+  }
+}
