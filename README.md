@@ -79,3 +79,8 @@ Typer CLI -> separate JSON output / stderr errors
 Next work: obtain appropriate genuine paired annotations and verified patient IDs, expert review, train/validate/test separation with a frozen external test cohort, lesion-level and per-patient metrics, annotation disagreement and site/scanner shift analysis. No data-independent model-quality improvement is inferred from these engineering fixes.
 
 [Verification](docs/verification.md), [changelog](CHANGELOG.md), [copy-only presentation](docs/presentation.md). No license change, release/tag, main merge or patient/model/data publication.
+
+
+## License scope
+
+New project-owned package/engineering files use the owner's MIT default. See LICENSE and LICENSE-SCOPE.md. This is not permission to relicense historical notebooks, third-party code, datasets, models or weights. Their provenance and terms still need review. Earlier verification entries saying no license was added describe the initial pilot, not this follow-up.
