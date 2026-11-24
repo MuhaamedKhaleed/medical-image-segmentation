@@ -12,3 +12,14 @@ Download `images.zip`, `masks.zip` and `metadata.zip` from links on the source B
 ## Actual limits
 
 microscopy nuclei, not brain MRI or patient clinical validation; small2epoch CPU development run; API key validation_patients means eight field groups here, not real patients
+
+## Explicit download and preparation
+
+The optional helper downloads only the documented primary-source files, checks SHA-256 and refuses an existing destination. It never runs during installation, import or tests. Source attribution/license cautions above still apply. No model/data is bundled. For an offline copy, add `--cached /path/to/source-files` with the same filenames; checksums are still required.
+
+```sh
+uv run --no-sync python scripts/fetch_real_data.py --output ./real-source
+uv run --no-sync python scripts/real_data.py --data ./real-source
+```
+
+The hashes pin the exact small development sources used here, not a permission warranty or a quality benchmark. If a source changes, the helper fails rather than silently training on different data.
