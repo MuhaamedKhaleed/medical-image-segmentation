@@ -54,3 +54,28 @@ def test_actual_unet_training_save_reload(tmp_path: Path) -> None:
 def test_bad_model(size: int, filters: int) -> None:
     with pytest.raises(ValueError):
         build(size, filters)
+
+
+def test_predict_mask_dimensions_binary_no_overwrite(tmp_path: Path) -> None:
+    from PIL import Image
+    from typer.testing import CliRunner
+
+    from medical_segmentation.cli import app
+    from medical_segmentation.model import predict
+
+    image = tmp_path / "input.png"
+    Image.new("L", (75, 53), 110).save(image)
+    artifact = tmp_path / "model.keras"
+    build(32, 1).save(artifact)
+    result = predict(image, artifact, tmp_path / "mask.png")
+    assert result["image_size"] == [75, 53]
+    with Image.open(tmp_path / "mask.png") as mask:
+        assert mask.size == (75, 53)
+        assert set(np.unique(np.asarray(mask))) <= {0, 255}
+    with pytest.raises(ValueError, match="Output exists"):
+        predict(image, artifact, tmp_path / "mask.png")
+    result = CliRunner().invoke(
+        app, ["predict", str(image), str(artifact), str(tmp_path / "cli.png")]
+    )
+    assert result.exit_code == 0, result.output
+    assert json.loads(result.output)["threshold"] == 0.5
