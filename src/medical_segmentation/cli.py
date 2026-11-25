@@ -85,3 +85,15 @@ def train(
         return fit(training, validation, output, epochs, size, filters, seed)
 
     run(action)
+
+
+@app.command()
+def predict(image: Path, model: Path, output: Path) -> None:
+    """Save a research mask from explicit same-modality trusted local weights."""
+
+    def action() -> dict[str, Any]:
+        from .model import predict as infer
+
+        return infer(image, model, output)
+
+    run(action)
