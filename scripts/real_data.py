@@ -12,7 +12,12 @@ def main():
     parser.add_argument(
         "--manifest", help="Reviewed selected Open Images source manifest"
     )
-    parser.add_argument("--epochs", type=int, default=2, help="Training epochs (default: the small recorded run)")
+    parser.add_argument(
+        "--epochs",
+        type=int,
+        default=2,
+        help="Training epochs (default: the small recorded run)",
+    )
     args = parser.parse_args()
     import io
     import json
@@ -78,7 +83,12 @@ def main():
                 )
     start = time.time()
     scores = train(
-        training, validation, root / "model-real", epochs=args.epochs, size=64, filters=2
+        training,
+        validation,
+        root / "model-real",
+        epochs=args.epochs,
+        size=64,
+        filters=2,
     )
     report = {
         "real_data": True,
