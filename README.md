@@ -2,6 +2,17 @@
 
 Strict local image/mask checks and explicit CPU U-Net training for a research workflow. Missing masks fail instead of silently becoming all-zero labels. This is **not a diagnostic device**, a validated clinical model or a demonstration of MRI segmentation quality.
 
+## Real-data quickstart (about 1 minute)
+
+Needs Python 3.11 or 3.12 (the locked PyTorch/TensorFlow wheels have no 3.13+ build); `--python 3.11` makes uv fetch it. Needs internet for the first install and downloads, and roughly 2 GB of free RAM.
+
+```sh
+uv sync --python 3.11 --locked --extra dev --extra ml
+uv run --no-sync python scripts/fetch_real_data.py --output ./real-source          # ~80 MB, CC0 BBBC039 microscopy
+uv run --no-sync python scripts/quality_cpu.py --data ./real-source --output ./seg-out
+```
+Output: `seg-out/best.keras` (trained U-Net), `report.json` (Dice) and `test-pred.png`. A fresh-clone run on 25 Nov 2026 gave test Dice 0.897 in about 35 s on one CPU core. Tweak: edit the epochs/width/learning rate in `scripts/quality_cpu.py`, or run the smaller `scripts/real_data.py --epochs N`. This is nuclei microscopy, not MRI.
+
 ## Why this pass matters
 
 The original notebook downloaded a brain-tumor classification dataset and assumed a separate mask folder. Its loader invented zero masks when files were missing, which could make an invalid experiment appear to train. Classification labels are not pixel annotations. This package requires an explicit manifest of genuine paired masks and patient IDs. No data, checkpoint, API credential or automatic download is bundled.
