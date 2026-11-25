@@ -97,3 +97,58 @@ def train(
     model.save(output / "model.keras")
     (output / "validation.json").write_text(json.dumps(scores))
     return scores
+
+
+def predict(image: Path, artifact: Path, output: Path) -> dict[str, Any]:
+    """Write one binary research mask, restored to input pixel dimensions."""
+    import numpy as np
+    from PIL import Image
+
+    if output.exists():
+        raise ValueError("Output exists; choose a new PNG path.")
+    if output.suffix.lower() != ".png":
+        raise ValueError("Output must be a PNG mask.")
+    if artifact.suffix != ".keras" or not artifact.is_file():
+        raise ValueError("Supply a trusted local .keras artifact.")
+    tf = backend()
+    model = tf.keras.models.load_model(artifact, safe_mode=True, compile=False)
+    shape = model.input_shape
+    if (
+        len(shape) != 4
+        or shape[-1] != 1
+        or shape[1] != shape[2]
+        or not isinstance(shape[1], int)
+        or model.output_shape != (None, shape[1], shape[2], 1)
+    ):
+        raise ValueError("Expected square grayscale U-Net with matching mask output.")
+    with Image.open(image) as source:
+        original = source.size
+        pixels = (
+            np.asarray(
+                source.convert("L").resize(
+                    (shape[1], shape[1]), Image.Resampling.BILINEAR
+                ),
+                dtype=np.float32,
+            )
+            / 255
+        )
+    probabilities = np.asarray(model(pixels[None, ..., None], training=False))
+    if (
+        probabilities.shape != (1, shape[1], shape[1], 1)
+        or not np.isfinite(probabilities).all()
+        or np.any(probabilities < 0)
+        or np.any(probabilities > 1)
+    ):
+        raise ValueError("Model produced invalid mask probabilities.")
+    mask = Image.fromarray((probabilities[0, ..., 0] >= 0.5).astype("uint8") * 255)
+    mask = mask.resize(original, Image.Resampling.NEAREST)
+    mask.save(output)
+    return {
+        "mask": str(output),
+        "image_size": list(original),
+        "threshold": 0.5,
+        "warning": (
+            "Research mask only. Model must be trained on the "
+            "matching modality; not diagnosis."
+        ),
+    }
