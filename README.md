@@ -93,6 +93,18 @@ See [commands, saved output and scope](docs/synthetic-demo.md). This is invented
 
 The root notebook now uses the supported local package with safe defaults and explicit data/training opt-ins. It replaces the platform-specific experiment rather than reproducing historical results. See `docs/notebook-migration.md` and the notebook settings. Earlier descriptions of live notebook downloads/hard-coded paths are historical and superseded. No dataset or weight rights are granted.
 
+## Fresh-clone path to a trained model (verified 25 Nov 2026)
+
+Microscopy nuclei (BBBC039, CC0), not brain MRI. From a clean clone on one CPU core:
+
+```sh
+uv sync --locked --extra dev --extra ml
+uv run --no-sync python scripts/fetch_real_data.py --output ./real-source
+uv run --no-sync python scripts/quality_cpu.py --data ./real-source --output ./quality-out
+```
+
+Result of the verification run: development Dice 0.8928, test Dice 0.8964 on 16 official test fields (about 25 s of training, output `best.keras` about 6 MB, `report.json`, `test-pred.png`). Training is not bit-deterministic, so expect small differences. The test fields have been observed in earlier runs, so this is a reproducible demonstration, not an untouched benchmark. The 2-epoch `real_data.py` run below is only a wiring check (Dice about 0.07). The original brain MRI weights were never recovered.
+
 ## Real-data CPU example
 
 See [actual results, source terms and explicit download/preparation commands](docs/real-data.md). These are small development runs, not accuracy or production guarantees. No model/data is committed.
