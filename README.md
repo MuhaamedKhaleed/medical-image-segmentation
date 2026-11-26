@@ -75,7 +75,7 @@ docker run --rm medical-segmentation:ci --help
 docker run --rm -v "$PWD/synthetic-demo:/data:ro" medical-segmentation:ci check-data --data /data/manifest.csv --size 32
 ```
 
-Multi-stage slim, non-root, no ML/dev dependencies: **data checks only**, not a training image. Hosted CI builds/runs these checks; there is no local Docker-daemon claim. CI is public-repository-only on ordinary hosted Linux runners. No paid API, GPU service, deployment or billable private-runner configuration is added. The uv lock is Linuxx86_64-scoped; pip in CI uses direct pins rather than claiming full uv-lock enforcement.
+Multi-stage slim, non-root, no ML/dev dependencies: **data checks only**, not a training image. Hosted CI builds/runs these checks. CI is public-repository-only on ordinary hosted Linux runners. No paid API, GPU service, deployment or billable private-runner configuration is added. The uv lock is Linuxx86_64-scoped; pip in CI uses direct pins rather than claiming full uv-lock enforcement.
 
 ## Structure
 
@@ -89,7 +89,7 @@ Typer CLI -> separate JSON output / stderr errors
 
 Next work: obtain appropriate genuine paired annotations and verified patient IDs, expert review, train/validate/test separation with a frozen external test cohort, lesion-level and per-patient metrics, annotation disagreement and site/scanner shift analysis. No data-independent model-quality improvement is inferred from these engineering fixes.
 
-[Verification](docs/verification.md), [changelog](CHANGELOG.md), [copy-only presentation](docs/presentation.md). No license change, release/tag, main merge or patient/model/data publication.
+[Verification](docs/verification.md), [changelog](CHANGELOG.md), [copy-only presentation](docs/presentation.md). No release/tag; no patient data, models or datasets are published.
 
 
 ## License scope
