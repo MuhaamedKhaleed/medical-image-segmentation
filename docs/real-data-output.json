@@ -1,0 +1,18 @@
+{
+  "real_data": true,
+  "dataset": "BBBC039v1 U2OS fluorescence nuclei",
+  "source": "https://bbbc.broadinstitute.org/BBBC039",
+  "license": "CC0",
+  "train_fields": 16,
+  "validation_fields": 8,
+  "split": "first official training16 and validation8; official test untouched; fields not patients",
+  "transforms": "16-bit image1/99percentile scaling; real RGB instance masks merged to binary foreground, nearest-neighbor resizing64",
+  "training": {
+    "validation_loss": 0.6929317712783813,
+    "validation_dice": 0.0749964624310174,
+    "validation_images": 8,
+    "validation_patients": 8
+  },
+  "elapsed_seconds": 7.01,
+  "limits": "microscopy nuclei, not brain MRI or patient clinical validation; small2epoch CPU development run; API key validation_patients means eight field groups here, not real patients"
+}

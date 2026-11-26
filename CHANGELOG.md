@@ -1,0 +1,25 @@
+# Changelog
+
+## [Unreleased]
+
+### Fixed
+- Refuse missing/unreadable segmentation masks instead of manufacturing zero labels.
+- Categorical nearest-neighbor mask resizing; removed unverified historical augmentation and credential/download cells.
+
+### Added
+- Strict image/mask/patient manifest, patient-disjoint split, binary-mask validation and explicit Dice convention.
+- Typed CPU U-Net research CLI, actual synthetic backend tests, uv lock, quality checks and data-only Docker/CI.
+- Honest clinical/data limitations. No trained MRI quality claim, license change or main merge.
+
+
+### Engineering follow-up
+- Use the committed uv lock in CI and key dependency-installer caching by that lock.
+- Complete copy-only profile README drafts and clarify historical versus current verification.
+
+### Synthetic demonstration follow-up
+
+Added standalone invented-input backend demo, checked JSON output and documented limits. Opt-in ML container added where a model backend exists; default lightweight image unchanged. Hosted container verification is required separately.
+
+## Portable notebook follow-up
+
+Replace platform-specific notebook execution with safe-default local package entry points, explicit local input checks and opt-in training. Add notebook execution/argv/failure regressions. Historical model scores and full-scale data training are not claimed reproduced.

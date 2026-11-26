@@ -1,0 +1,176 @@
+{
+  "dataset": "BBBC039v1",
+  "source": "https://bbbc.broadinstitute.org/BBBC039",
+  "split": "64official train/16official development/16first official test fields; not patients",
+  "size": 64,
+  "filters": 8,
+  "epochs": 40,
+  "learning_rate": 0.001,
+  "best_development_dice": 0.8945999456500641,
+  "test_dice": 0.8967633072557141,
+  "elapsed_seconds": 24.86857008934021,
+  "peak_rss_kb": 627488,
+  "history": [
+    {
+      "epoch": 1,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 2,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 3,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 4,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 5,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 6,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 7,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 8,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 9,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 10,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 11,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 12,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 13,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 14,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 15,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 16,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 17,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 18,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 19,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 20,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 21,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 22,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 23,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 24,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 25,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 26,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 27,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 28,
+      "development_dice": 0.0
+    },
+    {
+      "epoch": 29,
+      "development_dice": 0.0006133088009812941
+    },
+    {
+      "epoch": 30,
+      "development_dice": 0.6313216195569137
+    },
+    {
+      "epoch": 31,
+      "development_dice": 0.750182324471259
+    },
+    {
+      "epoch": 32,
+      "development_dice": 0.8001079039654707
+    },
+    {
+      "epoch": 33,
+      "development_dice": 0.8213617177463755
+    },
+    {
+      "epoch": 34,
+      "development_dice": 0.8540269692727138
+    },
+    {
+      "epoch": 35,
+      "development_dice": 0.8626817447495961
+    },
+    {
+      "epoch": 36,
+      "development_dice": 0.8747570965898266
+    },
+    {
+      "epoch": 37,
+      "development_dice": 0.8838793631353338
+    },
+    {
+      "epoch": 38,
+      "development_dice": 0.8906100957686292
+    },
+    {
+      "epoch": 39,
+      "development_dice": 0.8945999456500641
+    },
+    {
+      "epoch": 40,
+      "development_dice": 0.8938503412094198
+    }
+  ],
+  "limits": "small field subsets, test read once after dev selection; not clinical MRI, not independent-site validation"
+}
